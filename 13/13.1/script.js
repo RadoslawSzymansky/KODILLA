@@ -42,7 +42,8 @@
             var headerContent = document.createTextNode(obj.title);
             header.appendChild(headerContent);
             div.append(header);
-            div.append(obj.content);
+            div.insertAdjacentHTML("beforeend", obj.content);
+            console.log(div);
             if (obj.categories.length)
                 obj.categories.forEach(e => div.classList.add(e));
             fragment.appendChild(div);
