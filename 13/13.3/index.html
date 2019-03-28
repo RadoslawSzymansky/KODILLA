@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Game</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <h1>GRA "PAPIER, KAMIEŃ, NOŻYCZKI"</h1>
+    <div class="select">
+        <h3>Proszę, wybierz:</h3>
+
+        <img data-move="paper" class="first" src="/images/papierm.png" alt="apper" title="Papier" />
+
+        <img data-move="stone" src="/images/kamień.png" alt="stone" title="Kamień" />
+
+        <img data-move="scizzors" src="/images/nożyce.png" alt="scizzors" title="nożyczki" />
+    </div>
+
+    <button class="playRound ">Let's play!</button>
+    <div class="roundsCounter">Liczba pozostałych rund <span>0</span></div>
+
+    <button class="newGame"><a href="#modal-newGame" class="show-modal">Start new game</a></button>
+    <div class="overlay show" id="modal-overlay">
+        <div class="modal show" id="modal-newGame">
+            <input id="inputName" type="text" placeholder="Your name..">
+            <input id="inputRounds" type="number" placeholder="Number of rounds to play..">
+            <button class="setNewGame">Start</button>
+        </div>
+        <div class="modal " id="modal-results">
+            <h1 class="gameResult"></h1>
+            <div class="roundsResult"></div>
+            <button class="newGame"><a href="#modal-newGame" class="show-modal">Start new game</a></button>
+        </div>
+    </div>
+    <script src="js/config.js"></script>
+    <script src="js/modals.js"></script>
+    <script src="js/game.js"></script>
+</body>
+
+</html>
