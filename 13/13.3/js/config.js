@@ -1,14 +1,5 @@
 var config = {
-    name: name,
-    gamesToEnd: null,
-    isGameActive: false,
     options: ["paper", "stone", "scizzors"],
-    wins: 0,
-    losses: 0,
-    draws: 0,
-    roundsPlayed: 0,
-    playerMove: false,
-    stats: [],
     addGameToStats: function (playerChoice, aiChoice, result) {
         this.roundsPlayed++;
         var game = {

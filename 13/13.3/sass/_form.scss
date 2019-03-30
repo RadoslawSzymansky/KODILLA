@@ -1,0 +1,12 @@
+input {
+    margin: 5px 0;
+}
+
+.validation-hidden {
+    display: none;
+}
+
+.validation-active {
+    display: block;
+    color: #ff0000;
+}

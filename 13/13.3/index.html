@@ -14,22 +14,32 @@
     <div class="select">
         <h3>Proszę, wybierz:</h3>
 
-        <img data-move="paper" class="first" src="/images/papierm.png" alt="apper" title="Papier" />
+        <img data-move="paper" class="first" src="./images/papierm.png" alt="apper" title="Papier" />
 
-        <img data-move="stone" src="/images/kamień.png" alt="stone" title="Kamień" />
+        <img data-move="stone" src="./images/kamień.png" alt="stone" title="Kamień" />
 
-        <img data-move="scizzors" src="/images/nożyce.png" alt="scizzors" title="nożyczki" />
+        <img data-move="scizzors" src="./images/nożyce.png" alt="scizzors" title="nożyczki" />
     </div>
 
     <button class="playRound ">Let's play!</button>
     <div class="roundsCounter">Liczba pozostałych rund <span>0</span></div>
+    <h3 class="currentRound"></h3>
 
     <button class="newGame"><a href="#modal-newGame" class="show-modal">Start new game</a></button>
     <div class="overlay show" id="modal-overlay">
         <div class="modal show" id="modal-newGame">
-            <input id="inputName" type="text" placeholder="Your name..">
-            <input id="inputRounds" type="number" placeholder="Number of rounds to play..">
-            <button class="setNewGame">Start</button>
+            <form id="form-newGame" action="submit">
+                <div class="input-row">
+                    <input id="inputName" type="text" placeholder="Your name.."
+                        data-validation="required minLength5 maxLength20">
+                </div>
+                <div class="input-row">
+                    <input id="inputRounds" type="number" placeholder="Number of rounds to play.."
+                        data-validation="required minValue1">
+                </div>
+
+                <button class="setNewGame">Start</button>
+            </form>
         </div>
         <div class="modal " id="modal-results">
             <h1 class="gameResult"></h1>
@@ -40,6 +50,7 @@
     <script src="js/config.js"></script>
     <script src="js/modals.js"></script>
     <script src="js/game.js"></script>
+    <script src="js/validation.js"></script>
 </body>
 
 </html>
