@@ -1,4 +1,5 @@
 "use strict";
+console.log(config)
 const DOM_elements = {
     btnInitGame: document.querySelector(".setNewGame"),
     btnPlayRound: document.querySelector(".playRound"),

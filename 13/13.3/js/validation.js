@@ -1,4 +1,5 @@
 "use strict";
+
 var configForm = {};
 var updateMessages = {
     required: function (input) {
