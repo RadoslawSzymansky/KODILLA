@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>My plans</title>
+    <link rel="stylesheet" href="vendor/normalize.css" />
+    <link rel="stylesheet" href="vendor/flickity.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display&amp;subset=latin-ext" rel="stylesheet" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="main-carousel"></div>
+        <div class="progress-bar"></div>
+        <button class="btnRestart">Restart</button>
+        <div id="map"></div>
+    </div>
+    <script id="template-slide" type="x-tmpl-mustache">
+            <div style="background-image: url({{imageUrl}})" class="carousel-cell" id="{{id}}">
+                <div class="container">
+                    <h2>{{title}}</h2>
+                </div>
+            </div>
+        </script>
+    <script>
+        var slideData = [{
+                imageUrl: "./images/travel.jpeg",
+                title: "Miejsca, które zwiedzę w przyszłośći:",
+                id: "carousel-cell1",
+                coords: {
+                    lat: 60.701280,
+                    lng: 8.943245
+                }
+            },
+            {
+                imageUrl: "./images/newyork.jpg",
+                title: "New York",
+                id: "carousel-cell2",
+                coords: {
+                    lat: 40.730968,
+                    lng: -73.996206,
+                }
+            },
+            {
+                imageUrl: "./images/thai.jpg",
+                title: "Tajlandia",
+                id: "carousel-cell3",
+                coords: {
+                    lat: 13.743175,
+                    lng: 100.525470
+                }
+            },
+            {
+                imageUrl: "./images/beach-fun-jet-ski-1430676.jpg",
+                title: "Malediwy",
+                id: "carousel-cell4",
+                coords: {
+                    lat: -0.599467,
+                    lng: 73.083465
+                }
+            },
+            {
+                imageUrl: "./images/australia.jpg",
+                title: "Australia",
+                id: "carousel-cell5",
+                coords: {
+                    lat: -25.344,
+                    lng: 131.036
+                }
+            }
+        ];
+    </script>
+    <script src="js/flickity.min.js"></script>
+    <script src="https://unpkg.com/flickity-hash@1/hash.js"></script>
+    <script src="node_modules/mustache/mustache.min.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/mapControl.js"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDUHHFDKIBgCQLyEHpFVjzLsYaipSRu1Ro&callback=initMap">
+    </script>
+</body>
+
+</html>
