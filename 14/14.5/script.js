@@ -33,11 +33,19 @@
     accordionVanillaJS();
 
     // Teraz Twoja kolej - w poniższej funkcji wpisz kod wykorzystujący jQuery, który sprawi że drugi akordeon będzie działał identycznie do pierwszego. 
-    var accordionJQuery = function () {
-        var headers = $('#accordion-jquery h3').click(function () {
-            headers.removeClass('active');
-            $(this).addClass('active')
-        });
-    }
+
+    // 1 SPOSÓB
+    var accordionJQuery = function() {
+        $("#accordion-jquery h3").click(e =>  $(e.target).addClass("active").siblings("h3").removeClass("active"));
+        };
+
+    // drugi
+    
+    // var accordionJQuery = function () {
+    //     var headers = $('#accordion-jquery h3').click(function () {
+    //         headers.removeClass('active');
+    //         $(this).addClass('active')
+    //     });
+    // }
     accordionJQuery();
 })();
