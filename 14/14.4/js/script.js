@@ -37,9 +37,13 @@
                 position: e.coords,
                 map: map
             })
-            marker.addListener('click', () => flkty.select(i));
+            marker.addListener('click', () => {
+                flkty.select(i);
+                map.panTo(e.coords);
+                map.setZoom(8);
+            });
             flkty.on('change', function (index) {
-                if (event.target.tagName !== "AREA") map.panTo(slideData[index].coords);
+                map.panTo(slideData[index].coords);
             });
         })
     }
