@@ -1,0 +1,163 @@
+* {
+    margin: 0;
+    padding: 0
+}
+
+body {
+    min-width: 100vw;
+    min-height: 100vh;
+    background-color: #00ADCB;
+}
+
+#board>h1 {
+    text-align: center;
+    font-family: 'Abril Fatface', cursive;
+    letter-spacing: 3px;
+    font-weight: normal;
+    color: #fff;
+    text-shadow: 0 0 20px black;
+    margin: 25px auto;
+}
+
+#board .create-column {
+    margin: 20px auto;
+    display: block;
+    width: 80%;
+    max-width: 180px;
+    padding: 10px 5px;
+    border-radius: 5px;
+    border: none;
+    background-color: #00D24F;
+    font-size: 18px;
+    color: #fff;
+    transition: 0.2s;
+}
+
+#board .create-column:hover {
+    box-shadow: 0px 0px 2px 3px #00D66F;
+    background-color: #fff;
+    color: #00D66F;
+}
+
+.column-container {
+    margin: 0 auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: flex-start
+}
+
+.column-container>div {
+    margin-top: 20px;
+    min-width: 260px;
+    margin-bottom: 25px;
+    background-color: #DEE2E5;
+    padding: 10px;
+    border-radius: 3px;
+    min-height: 100px;
+    box-shadow: 0px 0px 3px 4px#818A90;
+    position: relative;
+    padding-bottom: 25px;
+
+}
+
+.column-container .column-title {
+    font-family: 'Fjalla One', sans-serif;
+    color: #1A384E;
+    letter-spacing: 1.5px;
+    font-size: 16px;
+}
+
+.column-container .column-card-list {
+    display: flex;
+    width: 100%;
+    min-height: 20px;
+    flex-wrap: wrap;
+    margin: 20px 0;
+}
+
+.column-container .column-card-list li {
+    justify-content: space-around;
+    list-style: none;
+    width: 100%;
+    margin-bottom: 10px;
+    background-color: #fff;
+    box-shadow: 1px 1px 1px 1px rgb(95, 94, 94);
+    border-radius: 2px;
+    padding: 3px
+}
+
+.column-container .column-card-list .card {
+    display: flex;
+    justify-content: space-between;
+    height: 100%;
+    line-height: 28px;
+    padding-left: 3px;
+    font-family: 'Raleway', sans-serif;
+
+}
+
+.column-card-list .card .btn-delete {
+    width: 28px;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 0 1px 1px rgb(238, 129, 129);
+    font-weight: 700;
+    font-size: 16px;
+    background-color: rgb(231, 231, 231);
+    cursor: pointer;
+    transition: 0.1s;
+    margin-right: 5px;
+
+}
+
+.column-card-list .card .btn-delete:hover {
+    box-shadow: 0 0 1px 1px rgb(247, 3, 3);
+    background-color: rgb(207, 205, 205);
+}
+
+.column>.btn-delete,
+.add-card {
+    position: absolute;
+    bottom: 8px;
+}
+
+.column>.btn-delete {
+    height: 28px;
+    width: 28px;
+    border-radius: 50%;
+    border: none;
+    box-shadow: 0 0 1px 1px rgb(238, 129, 129);
+    font-weight: 700;
+    font-size: 16px;
+    background-color: rgb(233, 213, 213);
+    cursor: pointer;
+    transition: 0.1s;
+    margin-right: 5px;
+    left: 10px;
+    bottom: 10px
+}
+
+.column>.btn-delete:hover {
+    box-shadow: 0 0 1px 1px rgb(247, 3, 3);
+    background-color: rgb(207, 205, 205);
+}
+
+.add-card {
+    width: 80%;
+    border: none;
+    padding: 5px;
+    color: white;
+    border-radius: 4px;
+    background-color: rgb(51, 108, 177);
+    line-height: 22px;
+    font-size: 15px;
+    right: 10px;
+    cursor: pointer
+}
+
+.add-card:hover {
+    background-color: #fff;
+    box-shadow: 0 0 1px 2px rgb(51, 108, 177);
+    color: rgb(51, 108, 177);
+}
