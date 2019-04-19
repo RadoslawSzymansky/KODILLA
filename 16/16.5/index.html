@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="https://fonts.googleapis.com/css?family=Dancing+Script|Open+Sans+Condensed:300|Oswald" rel="stylesheet">
+    <style>
+        body {
+            background-color: rgb(219, 217, 217);
+            text-align: center;
+            padding-top: 25px;
+            background: #C9FFBF;
+            background: -webkit-linear-gradient(to right, #FFAFBD, #C9FFBF);
+            background: linear-gradient(to right, #FFAFBD, #C9FFBF);
+        }
+
+        h1 {
+            font-family: 'Open Sans Condensed', sans-serif;
+            color: rgb(59, 59, 59)
+        }
+
+        .quote {
+            font-family: 'Dancing Script', cursive;
+            margin: 50px auto;
+            letter-spacing: 2px;
+            max-width: 320px;
+        }
+
+        .author {
+            font-family: 'Oswald', sans-serif;
+            font-weight: 300;
+            font-style: italic;
+            color: rgb(51, 51, 51)
+        }
+
+        .trigger {
+            background-color: #FF0155;
+            border: none;
+            color: #fff;
+            border-radius: 5px;
+            padding: 5px;
+            margin-right: 10px;
+            transition: 0.1s;
+            cursor: pointer;
+        }
+
+        .trigger:hover {
+            color: #FF0155;
+            box-shadow: 0 0 1px 1px #FF0155;
+            background-color: #fff;
+        }
+
+        .tweet {
+            color: #fff;
+            background-color: #2787F1;
+            padding: 5px;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: 0.2s
+        }
+
+        .tweet:hover {
+            color: #2787F1;
+            box-shadow: 0 0 1px 1px #2787F1;
+            background-color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <header>
+            <h1>Random quote machine</h1>
+        </header>
+        <div class="box">
+            <h2 class="quote"></h2>
+            <h3 class="author"></h3>
+        </div>
+        <div>
+            <button class="trigger"> Random quote </button>
+            <a href="#" target="_blank" class="tweet"><i class="fa fa-lg fa-twitter"></i> Tweet</a>
+        </div>
+    </main>
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,41 @@
+* {
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    box-sizing: border-box
+}
+
+
+#countries {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    list-style: none;
+    justify-content: space-between;
+    padding: 10px;
+    box-sizing: border-box
+}
+
+.country {
+    max-width: 320px;
+    padding: 10px;
+    margin: 10px 20px;
+    border: 1px solid black;
+    margin: 10px auto;
+}
+
+.country p {
+    padding: 10px 5px
+}
+
+@media(min-width: 768px) {
+    #countries {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        list-style: none;
+        justify-content: space-between;
+        padding: 10px;
+        box-sizing: border-box
+    }
+}
