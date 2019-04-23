@@ -1,17 +1,19 @@
 // https://cors-anywhere.herokuapp.com/
+// https://crossorigin.me/
+var boardLoader = createLoader(board.element)
 var baseUrl = 'https://cors-anywhere.herokuapp.com/https://kodilla.com/pl/bootcamp-api';
 var myHeaders = {
 	'X-Client-Id': 4008,
 	'X-Auth-Token': 'e52c72dcbfe4bffe6e46bfec4da76ce5'
 };
 fetch(baseUrl + '/board', {
-		headers: myHeaders
+		headers: myHeaders,
 	})
 	.then(function (resp) {
 		return resp.json();
 	})
 	.then(function (resp) {
-		console.log(resp)
+		removeLoader(boardLoader)
 		setupColumns(resp.columns);
 	});
 
@@ -33,9 +35,18 @@ function setupCards(col, cards) {
 function generateTemplate(name, data, basicElement) {
 	var template = document.getElementById(name).innerHTML;
 	var element = document.createElement(basicElement || 'div');
-
 	Mustache.parse(template);
 	element.innerHTML = Mustache.render(template, data);
-
 	return element;
+}
+
+function createLoader(parent) {
+	let loader = document.createElement('div');
+	loader.classList.add('loader');
+	parent.appendChild(loader)
+	return loader
+}
+
+function removeLoader(loader) {
+	loader.parentNode.removeChild(loader)
 }

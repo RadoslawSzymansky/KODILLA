@@ -9,22 +9,22 @@ function Column(id, name) {
 
 	this.element.querySelector('.column').addEventListener('click', function (event) {
 		if (event.target.classList.contains('btn-delete')) {
-			self.removeColumn();
+			self.removeColumn(event.target);
 		}
-
 		if (event.target.classList.contains('add-card')) {
+			let loader = createLoader(self.element)
 			var cardName = prompt("Enter the name of the card");
 			event.preventDefault();
 			var data = new FormData();
 			data.append('name', cardName);
 			data.append('bootcamp_kanban_column_id', self.id);
-
 			fetch(baseUrl + '/card', {
 					method: 'POST',
 					headers: myHeaders,
 					body: data,
 				})
 				.then(function (res) {
+					removeLoader(loader)
 					return res.json();
 				})
 				.then(function (resp) {
@@ -39,8 +39,10 @@ Column.prototype = {
 	addCard: function (card) {
 		this.element.querySelector('ul').appendChild(card.element);
 	},
-	removeColumn: function () {
+	removeColumn: function (btn) {
+		btn.setAttribute('disabled', true)
 		var self = this;
+		document.querySelector('.loader')
 		fetch(baseUrl + '/column/' + self.id, {
 				method: 'DELETE',
 				headers: myHeaders

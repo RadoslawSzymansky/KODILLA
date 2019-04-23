@@ -1,17 +1,14 @@
 var board = {
     name: 'Tablica Kanban',
     addColumn: function (column) {
-        console.log(column)
         this.element.appendChild(column.element);
-        // initSortable(column.id);
+        initSortable(column.id);
     },
     element: document.querySelector('#board .column-container')
 };
-
 document.querySelector('#board .create-column').addEventListener('click', function () {
     var name = prompt('Enter a column name');
     var data = new FormData();
-
     data.append('name', name);
 
     fetch(baseUrl + '/column', {
@@ -23,7 +20,6 @@ document.querySelector('#board .create-column').addEventListener('click', functi
             return resp.json();
         })
         .then(function (resp) {
-            console.log(resp)
             var column = new Column(resp.id, name);
             board.addColumn(column);
         });
