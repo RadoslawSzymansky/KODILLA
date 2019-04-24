@@ -10,12 +10,20 @@ fetch(baseUrl + '/board', {
 		headers: myHeaders,
 	})
 	.then(function (resp) {
-		return resp.json();
+		if (resp.ok) {
+			return resp.json()
+		} else {
+			throw new Error("Błąd połączenia")
+		}
 	})
 	.then(function (resp) {
-		removeLoader(boardLoader)
 		setupColumns(resp.columns);
-	});
+	}).catch(error => {
+		board.element.innerHTML = `<h3>Wystabił błąd: ${error}.
+		<br> Proszę odświeżyć strone i spróbować ponownie.`
+	}).finally(() => {
+		removeLoader(boardLoader)
+	})
 
 function setupColumns(columns) {
 	columns.forEach(function (column) {

@@ -23,14 +23,23 @@ function Column(id, name) {
 					headers: myHeaders,
 					body: data,
 				})
-				.then(function (res) {
-					removeLoader(loader)
-					return res.json();
+				.then(function (resp) {
+					if (resp.ok) {
+						return resp.json()
+					} else {
+						throw new Error("Błąd połączenia")
+					}
 				})
 				.then(function (resp) {
 					var card = new Card(resp.id, cardName);
 					self.addCard(card);
-				});
+				}).catch((error) => {
+					board.element.innerHTML = `<h3>Wystabił błąd: ${error}.
+					<br> Proszę odświeżyć strone i spróbować ponownie.`
+					console.log(error)
+				}).finally(() => {
+					removeLoader(loader)
+				})
 		}
 	});
 }
