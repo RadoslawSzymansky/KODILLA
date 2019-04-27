@@ -20,7 +20,7 @@ server.on('request', function (request, response) {
             if (err) throw Error(err)
             response.setHeader('Content-Type', 'image/jpeg')
             response.write(data);
-            response.end();
+            response.end(data);
         })
     }
 });
