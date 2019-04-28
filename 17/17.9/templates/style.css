@@ -1,5 +1,11 @@
 body {
     padding: 25px;
-    background-color: red;
+    background-color: rgb(204, 245, 255);
     text-align: center
+}
+
+label {
+    padding-bottom: 20px;
+    ;
+    display: inline-block
 }

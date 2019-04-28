@@ -15,32 +15,31 @@ exports.upload = function (request, response) {
         response.end();
     });
 }
+exports.sendStyles = function (request, response) {
+    fs.readFile('templates/style.css', function (err, css) {
+        if (err) throw err
+        response.writeHead(200, {
+            "Content-Type": "text/css"
+        });
+        response.write(css);
+        response.end();
+    });
+}
 
 exports.welcome = function (request, response) {
     console.log("Rozpoczynam obsługę żądania welcome.");
 
-    switch (request.url) {
-        case "/style.css":
-            fs.readFile('templates/style.css', function (err, css) {
-                if (err) throw err
-                response.writeHead(200, {
-                    "Content-Type": "text/css"
-                });
-                response.write(css);
-                response.end();
-            });
-            break;
-        default:
-            fs.readFile('templates/start.html', function (err, html) {
-                response.writeHead(200, {
-                    "Content-Type": "text/html; charset=utf-8"
-                });
-                response.write(html);
-                response.end();
-            });
-    }
+    fs.readFile('templates/start.html', function (err, html) {
+        response.writeHead(200, {
+            "Content-Type": "text/html; charset=utf-8"
+        });
+        response.write(html);
+        response.end();
+    });
+
 
 }
+
 
 exports.show = function (request, response) {
     fs.readFile("test.png", "binary", function (error, file) {
