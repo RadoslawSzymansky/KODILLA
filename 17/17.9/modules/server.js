@@ -11,7 +11,7 @@ function start() {
         response.writeHead(200, {
             "Content-Type": "text/plain; charset=utf-8"
         });
-        
+
         switch (request.url) {
             case '/':
             case '/start':
@@ -29,7 +29,8 @@ function start() {
         }
     }
 
-    http.createServer(onRequest).listen(9000);
+    
+    http.createServer(onRequest).listen(8080);
 
     console.log("Uruchomiono serwer!".green);
 }
