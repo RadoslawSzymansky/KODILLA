@@ -1,0 +1,90 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #F3F3F3;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+#app {
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding-top: 30px;
+    min-height: 100vh;
+}
+
+.contactForm {
+    padding: 10px;
+    background-color: rgb(240, 240, 240);
+    display: flex;
+    flex-direction: column;
+    max-width: 320px;
+    margin: 0 auto;
+    align-items: center;
+    border: 2px solid rgb(62, 190, 72);
+}
+
+.contactForm input {
+    width: 80%;
+    margin-bottom: 15px;
+    padding: 5px
+}
+
+.contactForm button {
+    width: 50%;
+    color: rgb(96, 175, 94);
+    border: 2px solid rgb(96, 175, 94);
+    font-size: 12px;
+    cursor: pointer;
+    text-transform: uppercase;
+    padding: 10px;
+    background-color: rgb(230, 230, 230);
+    border-radius: 4px;
+    transition: 0.2s;
+    font-weight: bold;
+}
+
+.contactForm button:hover {
+    color: rgb(255, 255, 255);
+    background-color: rgb(96, 175, 94);
+    ;
+    border: 2px solid rgb(124, 124, 124);
+}
+
+.contactsList {
+    padding: 15px;
+}
+
+.contactItem {
+    border: 1px solid red;
+    position: relative;
+    height: 80px;
+    padding: 5px;
+    padding-left: 150px;
+    background-color: rgb(241, 241, 241);
+    max-width: 500px;
+    margin: 20px auto;
+}
+
+.contactItem img {
+    position: absolute;
+    height: 78px;
+    width: auto;
+    border-radius: 2px;
+    left: 0;
+    top: 0;
+}
+
+.contactItem .contactLabel {
+    padding: 2px
+}
+
+.contactItem .contactEmail {
+    padding: 2px;
+    text-decoration: none
+}
