@@ -8,7 +8,7 @@ var moviesJSON = [{
         id: 2,
         title: 'Król Lew',
         desc: 'Film o królu sawanny',
-        src: "/img/content.jpeg"
+        src: "./img/content.jpeg"
     }, {
         id: 3,
         title: 'Wiedzmin',
@@ -85,20 +85,10 @@ var MoviesList = React.createClass({
     },
     render: function () {
         const movies = this.props.movies.map(movie => {
-            return (
-                React.createElement(Movie, {
-                    key: movie.id,
-                    title: movie.title,
-                    desc: movie.desc,
-                    src: movie.src
-                }))
+             return React.createElement(Movie, {key: movie.id,title: movie.title,desc: movie.desc,src: movie.src})
         })
         return (
-            React.createElement('ul', {
-                    className: "main"
-                },
-                movies
-            )
+            React.createElement('ul', {className: "main"},movies)
         )
     },
 });

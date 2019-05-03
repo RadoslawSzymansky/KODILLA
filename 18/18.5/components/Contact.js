@@ -10,7 +10,7 @@ var Contact = React.createClass({
                 },
                 React.createElement('img', {
                     className: 'contactImage',
-                    src: '../img/user.png'
+                    src: './img/user.png'
                 }),
                 React.createElement('p', {
                     className: 'contactLabel'
