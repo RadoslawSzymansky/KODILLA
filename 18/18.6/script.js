@@ -41,8 +41,8 @@ var Counter = React.createClass({
     render: function() {
         console.log('render, musze zwrocic jeden element react')
         return React.createElement('div', {},
-        React.createElement('button', {onClick: this.increment}, 'Odejmij'),
-        React.createElement('button', {onClick: this.decrement}, 'Dodaj'),
+        React.createElement('button', {onClick: this.increment}, 'Dodaj'),
+        React.createElement('button', {onClick: this.decrement}, 'Odejmij'),
         React.createElement('span', {}, 'Licznik ' + this.state.counter),
         this.props.counter? this.props.counter: null
         );

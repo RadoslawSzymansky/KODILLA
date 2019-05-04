@@ -1,64 +1,41 @@
-const GIPHY_API_URL = 'https://api.giphy.com'
-const GIPHY_PUB_KEY = '5ndrRik4Dkhv5izNrHgpdAmoOQOl9yVC'
-App = React.createClass({
-    getInitialState() {
-        return {
-            loading: false,
-            searchingText: '',
-            gif: {}
-        };
+var contacts = [{
+        id: 1,
+        firstName: 'Jan',
+        lastName: 'Nowak',
+        email: 'jan.nowak@example.com',
     },
-    handleChange: function(event) {
-        var searchingText = event.target.value;
-        this.setState({
-            searchingText: searchingText
-        });
+    {
+        id: 2,
+        firstName: 'Adam',
+        lastName: 'Kowalski',
+        email: 'adam.kowalski@example.com',
     },
-    handleSearch: function(searchingText) {  
-        this.setState({
-          loading: true  
-        });
-        this.getGif(searchingText, function(gif) {  
-          this.setState({  
-            loading: false,  
-            gif: gif,  
-            searchingText: searchingText  
-          });
-        }.bind(this));
-    },
-    getGif: function(searchingText, callback) {  
-        var url = GIPHY_API_URL + '/v1/gifs/random?api_key=' + GIPHY_PUB_KEY + '&tag=' + searchingText;  
-        var xhr = new XMLHttpRequest();  
-        xhr.open('GET', url);
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-               var data = JSON.parse(xhr.responseText).data; 
-                var gif = {  
-                    url: data.fixed_width_downsampled_url,
-                    sourceUrl: data.url
-                };
-                callback(gif);  
-            }
-        };
-        xhr.send();
-    },
-    render: function() {
-        var styles = {
-            margin: '0 auto',
-            textAlign: 'center',
-            width: '90%'
-        };
+    {
+        id: 3,
+        firstName: 'Zbigniew',
+        lastName: 'Koziol',
+        email: 'zbigniew.koziol@example.com',
+    }
+];
+
+var contactForm = {
+    firstName: '',
+    lastName: '',
+    email: ''
+};
+var App = React.createClass({
+    render: function () {
         return (
-          <div style={styles}>
-                <h1>Wyszukiwarka GIFow!</h1>
-                <p>Znajdź gifa na <a href='http://giphy.com'>giphy</a>. Naciskaj enter, aby pobrać kolejne gify.</p>
-                <Search onSearch={this.handleSearch}/>
-                <Gif
-                    loading={this.state.loading}
-                    url={this.state.gif.url}
-                    sourceUrl={this.state.gif.sourceUrl}
-                />
-          </div>
+            React.createElement('div', {
+                    className: 'app'
+                },
+                React.createElement(ContactForm, {
+                    contact: contactForm
+                }),
+                React.createElement(Contacts, {
+                    items: contacts
+                }, {})
+            )
         );
     }
 });
