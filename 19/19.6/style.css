@@ -1,0 +1,35 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-wrap: wrap;
+
+}
+.wrapper{
+    background-color: #627F8D;
+    min-width: 200px;
+    padding: 10px;
+    text-align: center;
+}
+a{
+    background-color: rgba(46, 46, 46, 0.2);
+    color: rgb(207, 207, 207);
+    border-radius: 2px;
+    text-decoration: none;
+    cursor: pointer;
+    margin: 5px 5px;;
+    padding: 2px;
+}
+.stopwatch{
+    letter-spacing: 1px;
+    font-size: 32px;
+    color: rgb(184, 183, 183);
+
+}
+ul{
+    list-style: none;
+    width: 100%;
+    text-align: center}
+li{
+    margin-bottom: 5px;
+}

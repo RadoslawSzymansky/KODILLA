@@ -1,0 +1,46 @@
+body{
+    margin: 0;
+    padding: 0;
+    background-color: rgb(226, 228, 224);
+}
+form{
+    min-height: 40px;
+    background-color: rgb(70, 70, 70);
+    text-align: center;
+    line-height: 40px;
+}
+label{
+    color: #fff;
+    margin-right: 15px;
+}
+.usersBox{
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 850px;
+    background: #fff;
+    margin: 0 auto;
+    padding: 10px;
+    justify-content: center
+}
+.usersBox div{
+    box-shadow: 0 0 2px 2px rgb(196, 196, 238);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    margin: 20px;
+    width: 130px;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(245, 241, 241);
+}
+a{  
+    width: 90%;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    color: rgb(83, 83, 83);
+    cursor: pointer;
+    text-decoration: none;
+    margin-top: 5px;
+    text-align: center;
+    font-size: 18px;
+}
