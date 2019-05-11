@@ -47,7 +47,6 @@ var Stopwatch = function () {
     }, {
         key: 'resetClock',
         value: function resetClock() {
-            this.stop();
             this.reset();
             this.print();
         }

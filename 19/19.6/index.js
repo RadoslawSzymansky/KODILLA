@@ -30,7 +30,6 @@ class Stopwatch {
         return li
     }
     resetClock(){
-        this.stop();
         this.reset();
         this.print()
     }

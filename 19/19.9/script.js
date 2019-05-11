@@ -17,10 +17,6 @@ class App extends React.Component {
       const url = `https://api.github.com/search/users?q=${searchText}`;
       fetch(url)
         .then(response => response.json())
-        .then(a=>{
-            console.log(a);
-            return a
-        })
         .then(responseJson => this.setState({users: responseJson.items}));
     }
   
@@ -40,26 +36,21 @@ class App extends React.Component {
       );
     }
 } 
-class UsersList extends React.Component {
-    get users() {
-      return this.props.users.map(user => <User key={user.id} user={user}/>);
-    }
-    render() {
-      return (
-        <div className="usersBox">
-          {this.users}
-        </div>
-      );
-    }
+const UsersList = props => {
+    const users = props.users.map(user => <User key={user.id} user={user}/>)
+    return (
+      <div className="usersBox">
+        {users}
+      </div>
+    );
 }
-class User extends React.Component {
-    render() {
+const User = props => {
+  const {user} = props
       return (
         <div>
-          <img src={this.props.user.avatar_url} style={{maxWidth: '100px'}}/>
-          <a href={this.props.user.html_url} target="_blank">{this.props.user.login}</a>
+          <img src={user.avatar_url} style={{maxWidth: '100px'}}/>
+          <a href={user.html_url} target="_blank">{user.login}</a>
         </div>
       );
-    }
 }
 ReactDOM.render(<App />, document.getElementById('root'));

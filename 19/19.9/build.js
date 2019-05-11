@@ -39,9 +39,6 @@ var App = function (_React$Component) {
       var url = "https://api.github.com/search/users?q=" + searchText;
       fetch(url).then(function (response) {
         return response.json();
-      }).then(function (a) {
-        console.log(a);
-        return a;
       }).then(function (responseJson) {
         return _this2.setState({ users: responseJson.items });
       });
@@ -80,62 +77,28 @@ var App = function (_React$Component) {
   return App;
 }(React.Component);
 
-var UsersList = function (_React$Component2) {
-  _inherits(UsersList, _React$Component2);
+var UsersList = function UsersList(props) {
+  var users = props.users.map(function (user) {
+    return React.createElement(User, { key: user.id, user: user });
+  });
+  return React.createElement(
+    "div",
+    { className: "usersBox" },
+    users
+  );
+};
+var User = function User(props) {
+  var user = props.user;
 
-  function UsersList() {
-    _classCallCheck(this, UsersList);
-
-    return _possibleConstructorReturn(this, (UsersList.__proto__ || Object.getPrototypeOf(UsersList)).apply(this, arguments));
-  }
-
-  _createClass(UsersList, [{
-    key: "render",
-    value: function render() {
-      return React.createElement(
-        "div",
-        { className: "usersBox" },
-        this.users
-      );
-    }
-  }, {
-    key: "users",
-    get: function get() {
-      return this.props.users.map(function (user) {
-        return React.createElement(User, { key: user.id, user: user });
-      });
-    }
-  }]);
-
-  return UsersList;
-}(React.Component);
-
-var User = function (_React$Component3) {
-  _inherits(User, _React$Component3);
-
-  function User() {
-    _classCallCheck(this, User);
-
-    return _possibleConstructorReturn(this, (User.__proto__ || Object.getPrototypeOf(User)).apply(this, arguments));
-  }
-
-  _createClass(User, [{
-    key: "render",
-    value: function render() {
-      return React.createElement(
-        "div",
-        null,
-        React.createElement("img", { src: this.props.user.avatar_url, style: { maxWidth: '100px' } }),
-        React.createElement(
-          "a",
-          { href: this.props.user.html_url, target: "_blank" },
-          this.props.user.login
-        )
-      );
-    }
-  }]);
-
-  return User;
-}(React.Component);
-
+  return React.createElement(
+    "div",
+    null,
+    React.createElement("img", { src: user.avatar_url, style: { maxWidth: '100px' } }),
+    React.createElement(
+      "a",
+      { href: user.html_url, target: "_blank" },
+      user.login
+    )
+  );
+};
 ReactDOM.render(React.createElement(App, null), document.getElementById('root'));

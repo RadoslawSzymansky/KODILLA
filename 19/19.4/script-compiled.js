@@ -3,7 +3,7 @@
 //1
 var hello = "Hello";
 var world = "World";
-var helloWorld = "" + (hello, " ", world);
+var helloWorld = hello + " " + world;
 console.log("1: ", hello, world);
 //2
 var multiply = function multiply() {
@@ -28,7 +28,7 @@ var grades = [1, 5, 5, 5, 4, 3, 3, 2, 1];
 console.log("4: ", average.apply(undefined, grades));
 //5
 var _ref = [1, 4, 'Iwona', false, 'Nowak'],
-    first = _ref[0],
+    first = _ref[2],
     last = _ref[4];
 
-console.log("5: ", "first:", first, "last: ", last);
+console.log("5: ", "first:", first, "last:", last);

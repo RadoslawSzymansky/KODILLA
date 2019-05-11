@@ -22,7 +22,6 @@ class App extends React.Component{
         return li
     }
     resetClock = () => {
-        this.stop();
         this.setState({
             times: {
                 minutes: 0,
@@ -39,7 +38,7 @@ class App extends React.Component{
         })
     }
     
-    format(times) {
+    format= times => {
         return `${this.pad0(times.minutes)} : ${this.pad0(times.seconds)} : ${this.pad0(Math.floor(times.miliseconds))}`;
     }
     start= () => {
