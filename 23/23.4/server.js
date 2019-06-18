@@ -1,7 +1,9 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const bodyParser = require('body-parser');
 
+app.use(bodyParser);
 app.use(express.static(path.join(__dirname, 'assets')));
 
 app.get('/', function (req, res) {
