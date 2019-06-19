@@ -1,0 +1,11 @@
+extends layout.pug
+
+block content
+
+  h1 Strona główna
+
+  if(user)
+    h1 Witaj, #{user.name}
+  else
+    a(href='auth/google') Zaloguj
+
