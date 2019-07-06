@@ -15,30 +15,28 @@ function addComment(text) {
 function removeComment(id) {
   return {
     type: REMOVE_COMMENT,
-    payload: id
+    id
   };
 };
 
 function editComment(text, id) {
   return {
     type: EDIT_COMMENT,
-    payload: {
-      text,
-      id
-    }
+    text,
+    id
   };
 };
 
 function thumbUpComment(id) {
   return {
     type: THUMB_UP_COMMENT,
-    payload: id
+    id
   };
 };
 
 function thumbDownComment(id) {
   return {
     type: THUMB_DOWN_COMMENT,
-    payload: id
+    id
   };
 };
