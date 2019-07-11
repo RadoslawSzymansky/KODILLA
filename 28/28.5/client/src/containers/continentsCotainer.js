@@ -15,11 +15,16 @@ class ContinentsContainer extends Component {
 
   componentDidMount() {
     this.props.getCountries();
-    this.props.setContinent('Europa');
+  }
+
+  componentDidUpdate() {
+    if(!this.props.visibleCountries) {
+      this.props.setContinent('Europa');
+    }
   }
 
   renderCountryFlagList() {
-    if (!this.props.countries.length) {
+    if (!this.props.countries.length || !this.props.visibleCountries) {
       return (
         <div className="loader" id="loader-1"></div>
       )
