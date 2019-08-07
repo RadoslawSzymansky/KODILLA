@@ -5,8 +5,12 @@ import { API_URL } from '../config';
 const reducerName = 'posts';
 const createActionName = name => `app/${reducerName}/${name}`;
 
-/* SELECTORS */
 export const LOAD_POSTS = createActionName('LOAD_POSTS');
+
+/* SELECTORS */
+
+export const getPosts = ({ posts }) => posts;
+export const getPostsCount = ({ posts }) => posts.length;
 
 /* ACTIONS */
 
@@ -44,4 +48,3 @@ export const loadPostsRequest = () => {
   };
 };
 
-export const getPosts = ({ posts }) => posts;
