@@ -15,11 +15,11 @@ class Posts extends React.Component {
   renderContent() {
 
     const { pending, error, success } = this.props.request;
-    const { postsCount, posts } = this.props;
+    const {  posts } = this.props;
     
     switch (true) {
 
-      case !pending && success && postsCount > 0: 
+      case !pending && success && posts.length > 0: 
         return <PostsList posts={posts} />;
 
       case pending && !success:
@@ -28,7 +28,7 @@ class Posts extends React.Component {
       case !pending && error:
         return <Alert variant='error'>{error}</Alert>;
 
-      case !pending && success && postsCount === 0:
+      case !pending && success && posts.length === 0:
         return <Alert variant='info'>No posts...</Alert>;
 
       default:
