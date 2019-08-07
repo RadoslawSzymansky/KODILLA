@@ -16,7 +16,6 @@ export const ERROR_REQUEST = createActionName('ERROR_REQUEST');
 export const getPosts = ({ posts }) => posts.data;
 export const getPostsCount = ({ posts }) => posts.data.length;
 export const getRequest = ({ posts }) => posts.request;
-export const errorRequest = error => ({ error, type: ERROR_REQUEST });
 
 
 /* ACTIONS */
@@ -24,6 +23,8 @@ export const errorRequest = error => ({ error, type: ERROR_REQUEST });
 export const startRequest = () => ({ type: START_REQUEST });
 export const loadPosts = payload => ({ payload, type: LOAD_POSTS });
 export const endRequest = () => ({ type: END_REQUEST });
+export const errorRequest = error => ({ error, type: ERROR_REQUEST });
+
 
 /* INITIAL STATE */
 
