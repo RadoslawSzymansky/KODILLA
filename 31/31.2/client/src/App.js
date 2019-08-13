@@ -10,6 +10,7 @@ import Contact from './components/pages/Contact/ContactPage';
 import NotFound from './components/pages/NotFound/NotFoundPage';
 import Post from './components/pages/Post/PostPage';
 import AddPost from './components/pages/AddPost/AddPost';
+import UpdatePost from './components/pages/UpdatePost/UpdatePost';
 
 class App extends React.Component {
 
@@ -22,6 +23,7 @@ class App extends React.Component {
           <Route path="/contact" exact component={Contact} />
           <Route path="/posts/new" exact component={AddPost} />
           <Route path="/posts/:id" exact component={Post} />
+          <Route path="/posts/edit/:id" exact component={UpdatePost} />
           <Route component={NotFound} />
         </Switch>
       </MainLayout>

@@ -13,4 +13,7 @@ router.route('/posts/:id').get(PostController.getSinglePost);
 // add posts
 router.route('/posts').post(PostController.addPost);
 
+// update post
+router.route('/posts').patch(PostController.updatePost);
+
 module.exports = router;

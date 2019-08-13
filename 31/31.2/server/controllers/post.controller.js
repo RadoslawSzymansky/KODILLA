@@ -42,3 +42,22 @@ exports.addPost = async function (req, res) {
   };
 
 };
+
+// add new post
+exports.updatePost = async function (req, res) {
+
+  try {
+    const { id, title, author, content } = req.body;
+    
+    let postToUpdate = await Post.findOneAndUpdate(
+      { id: id }, 
+      { title: title, author: author, content: content }
+    );
+
+    res.status(200).json(postToUpdate);
+
+  } catch (err) {
+    res.status(500).json(err);
+  };
+
+};

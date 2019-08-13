@@ -23,6 +23,8 @@ db.once('open', () => {
   loadTestData();
 });
 db.on('error', (err) => console.log('Error ' + err));
+mongoose.set('useNewUrlParser', true);
+mongoose.set('useFindAndModify', false);
 
 app.listen(config.PORT, function () {
   console.log('Server is running on Port:', config.PORT);

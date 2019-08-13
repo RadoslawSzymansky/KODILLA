@@ -22,10 +22,19 @@ class PostForm extends React.Component {
     }
   }
 
-  componentDidMount() {
-    this.props.resetRequest();
-  };
+  async componentDidMount () {
+    const {loadPost, resetRequest, isEdit, id } = this.props
+    
+    if(isEdit) {
+      await loadPost(id)
+      resetRequest();
 
+      this.setState({post: this.props.post});
+    } else {
+      resetRequest();
+    };
+  };
+  
   handleChange = (e) => {
     const { post } = this.state;
     this.setState({ post: { ...post, [e.target.name]: e.target.value } })
@@ -36,25 +45,27 @@ class PostForm extends React.Component {
     this.setState({ post: { ...post, content: text } })
   }
 
-  addPost = (e) => {
-    const { addPost } = this.props;
+  sendPost = (e) => {
+    const { addPost, updatePost, isEdit } = this.props;
     const { post } = this.state;
 
+    const callback = isEdit ? updatePost : addPost;
+
     e.preventDefault();
-    addPost(post);
+    callback(post);
   }
 
   render() {
 
     const { post } = this.state;
-    const { handleChange, handleEditor, addPost } = this;
-    const { request } = this.props;
+    const { handleChange, handleEditor, sendPost } = this;
+    const { request, isEdit } = this.props;
 
     if (request.error) return <Alert variant="error">{request.error}</Alert>
-    else if (request.success) return <Alert variant="success">Post has been added!</Alert>
+    else if (request.success) return <Alert variant="success">Post has been {isEdit ? "updated" : "added"}!</Alert>
     else if (request.pending) return <Spinner />
     else return (
-      <form onSubmit={addPost}>
+      <form onSubmit={sendPost}>
 
         <TextField
           label="Title"
@@ -79,7 +90,7 @@ class PostForm extends React.Component {
           options={{ placeholder: false, toolbar: { buttons: ['bold', 'italic', 'underline', 'anchor', 'h2', 'h3'] } }}
         />
 
-        <Button variant="primary">Add post</Button>
+        <Button variant="primary">{isEdit? "Update" : "Add"} post</Button>
 
       </form>
     );
@@ -89,6 +100,8 @@ class PostForm extends React.Component {
 PostForm.propTypes = {
   request: PropTypes.object.isRequired,
   addPost: PropTypes.func.isRequired,
+  updatePost: PropTypes.func.isRequired,
+  isEdit: PropTypes.bool
 };
 
 export default PostForm;
