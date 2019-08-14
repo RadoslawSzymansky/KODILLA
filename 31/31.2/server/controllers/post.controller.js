@@ -43,7 +43,7 @@ exports.addPost = async function (req, res) {
 
 };
 
-// add new post
+// update post
 exports.updatePost = async function (req, res) {
 
   try {

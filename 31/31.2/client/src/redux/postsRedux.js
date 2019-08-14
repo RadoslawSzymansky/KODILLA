@@ -101,36 +101,19 @@ export const loadPostsRequest = () => {
 };
 
 
-export const loadSinglePostRequest = id => {
+export const loadSinglePostRequest = (id, update) => {
   return async dispatch => {
 
     dispatch(startRequest());
     try {
-
+      const action = update ? loadPostToUpdate : loadSinglePost;
       let res = await axios.get(`${API_URL}/posts/${id}`);
       await new Promise((resolve, reject) => setTimeout(resolve, 2000));
-      dispatch(loadSinglePost(res.data));
+      dispatch(action(res.data));
       dispatch(endRequest());
     } catch (e) {
       dispatch(errorRequest(e.message));
     }
-
-  };
-};
-
-export const loadPostToUpdateRequest = id => {
-  return async dispatch => {
-    
-    dispatch(startRequest());
-    try {
-
-      let res = await axios.get(`${API_URL}/posts/${id}`);
-      await new Promise((resolve, reject) => setTimeout(resolve, 2000));
-      dispatch(loadPostToUpdate(res.data));
-      dispatch(endRequest());
-    } catch (e) {
-      dispatch(errorRequest(e.message));
-    };
 
   };
 };

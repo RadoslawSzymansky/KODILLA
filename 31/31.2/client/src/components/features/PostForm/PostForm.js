@@ -23,9 +23,9 @@ class PostForm extends React.Component {
   }
 
   async componentDidMount () {
-    const {loadPost, resetRequest, isEdit, id } = this.props
+    const {loadPost, resetRequest, isUpdate, id } = this.props
     
-    if(isEdit) {
+    if(isUpdate) {
       await loadPost(id)
       resetRequest();
 
@@ -46,10 +46,10 @@ class PostForm extends React.Component {
   }
 
   sendPost = (e) => {
-    const { addPost, updatePost, isEdit } = this.props;
+    const { addPost, updatePost, isUpdate } = this.props;
     const { post } = this.state;
 
-    const callback = isEdit ? updatePost : addPost;
+    const callback = isUpdate ? updatePost : addPost;
 
     e.preventDefault();
     callback(post);
@@ -59,10 +59,10 @@ class PostForm extends React.Component {
 
     const { post } = this.state;
     const { handleChange, handleEditor, sendPost } = this;
-    const { request, isEdit } = this.props;
+    const { request, isUpdate } = this.props;
 
     if (request.error) return <Alert variant="error">{request.error}</Alert>
-    else if (request.success) return <Alert variant="success">Post has been {isEdit ? "updated" : "added"}!</Alert>
+    else if (request.success) return <Alert variant="success">Post has been {isUpdate ? "updated" : "added"}!</Alert>
     else if (request.pending) return <Spinner />
     else return (
       <form onSubmit={sendPost}>
@@ -90,7 +90,7 @@ class PostForm extends React.Component {
           options={{ placeholder: false, toolbar: { buttons: ['bold', 'italic', 'underline', 'anchor', 'h2', 'h3'] } }}
         />
 
-        <Button variant="primary">{isEdit? "Update" : "Add"} post</Button>
+        <Button variant="primary">{isUpdate? "Update" : "Add"} post</Button>
 
       </form>
     );
@@ -101,7 +101,7 @@ PostForm.propTypes = {
   request: PropTypes.object.isRequired,
   addPost: PropTypes.func.isRequired,
   updatePost: PropTypes.func.isRequired,
-  isEdit: PropTypes.bool
+  isUpdate: PropTypes.bool
 };
 
 export default PostForm;
