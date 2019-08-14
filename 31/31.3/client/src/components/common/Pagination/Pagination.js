@@ -1,61 +1,51 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-
 import './Pagination.scss';
 
-class Pagination extends React.Component {
-  state = {
-    presentPage: this.props.initialPage || 1
-  }
-  componentDidMount() {
-    console.log("piewrsze")
-  }
 
-  componentDidUpdate() {
-    console.log("update", this.state.presentPage)
-  }
+class Pagination extends React.Component {
 
   changePage = (newPage) => {
-    console.log('new', newPage)
     const { onPageChange } = this.props;
 
-    this.setState({ presentPage: newPage });
     onPageChange(newPage);
   }
 
   renderNavButton = (type) => {
-    const { pages } = this.props;
-    const { presentPage } = this.state;
+    const { pages, page } = this.props;
 
-    const newPage = type === 'prev' ? presentPage - 1 : presentPage + 1;
+    const newPage = type === 'prev' ? page - 1 : page + 1;
     const content = type === 'prev' ? '<' : '>';
 
     const button = <button onClick={() => this.changePage(newPage)}>{content}</button>;
 
-    if(type === 'prev' && presentPage !== 1) return button;
-    if(type === 'next' && presentPage !== pages && pages > 1) return button;
+    if (type === 'prev' && page !== 1) return button;
+    if (type === 'next' && page !== pages && pages > 1) return button;
     return null;
   }
 
   render() {
-    console.log(this.state)
-    const { pages } = this.props;
-    const { presentPage } = this.state;
+
+    const { pages, page } = this.props;
     const { changePage } = this;
 
     return (
       <div className="pagination">
         <ul className="pagination__list">
+
           {this.renderNavButton('prev')}
-          {[...Array(pages)].map((el, page) =>
+
+          {[...Array(pages)].map((el, pageNum) =>
             <li
-              key={++page}
-              onClick={() => { changePage(page) }}
-              className={`pagination__list__item${((page) === presentPage) ? ' pagination__list__item--active' : ''}`}>
-              {page}
+              key={++pageNum}
+              onClick={() => { changePage(pageNum) }}
+              className={`pagination__list__item${((page) === pageNum) ? ' pagination__list__item--active' : ''}`}>
+              {pageNum}
             </li>
           )}
+
           {this.renderNavButton('next')}
+
         </ul>
       </div>
     );

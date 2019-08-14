@@ -7,30 +7,48 @@ import Alert from '../../common/Alert/Alert';
 import Pagination from '../../common/Pagination/Pagination';
 
 class Posts extends React.Component {
+  state = {
+    presentPage: this.props.initialPage || 1,
+    postsPerPage: this.props.postsPerPage || 10,
+    pagination: this.props.pagination !== undefined
+      ? 
+        this.props.pagination
+      :
+        true
+  }
 
   componentDidMount() { 
-    console.log("mount posts")
     const { loadPostsByPage } = this.props;
-    loadPostsByPage(1);
+    const { presentPage, postsPerPage } = this.state;
+
+    loadPostsByPage(presentPage, postsPerPage);
   }
 
   loadPostsPage = (page) => {
     const { loadPostsByPage } = this.props;
-    loadPostsByPage(page);
+    const { postsPerPage } = this.state;
+
+    this.setState({ presentPage: page });
+    loadPostsByPage(page, postsPerPage);
   }
 
   renderContent() {
 
     const { pending, error, success } = this.props.request;
-    const {  posts } = this.props;
-
+    const { posts } = this.props;
+    const { presentPage, pagination } = this.state;
     switch (true) {
 
       case !pending && success && posts.length > 0: 
         return (
           <>
             <PostsList posts={posts} />
-            <Pagination pages={this.props.pages} onPageChange={this.loadPostsPage} />
+            { pagination 
+              ?
+                <Pagination pages={this.props.pages} onPageChange={this.loadPostsPage} page={presentPage}/>
+              : 
+                null
+            }
           </>
         )
 
@@ -50,7 +68,7 @@ class Posts extends React.Component {
   }
 
   render() {
-
+    console.log("wywoluje posts")
     return (
       <div>
         {this.renderContent()}
@@ -71,6 +89,7 @@ Posts.propTypes = {
     })
   ),
   loadPostsByPage: PropTypes.func.isRequired,
+  postsPerPage: PropTypes.number,
 };
 
 export default Posts;

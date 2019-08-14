@@ -167,16 +167,14 @@ export const updatePostRequest = (post) => {
   };
 };
 
-export const loadPostsByPageRequest = (page) => {
+export const loadPostsByPageRequest = (page, postsPerPage) => {
   return async dispatch => {
 
     dispatch(startRequest());
     try {
 
-      const postsPerPage = 10;
-
-      const startAt = (page - 1) * postsPerPage;
-      const limit = postsPerPage;
+      const limit = postsPerPage || 10;
+      const startAt = (page - 1) * limit;
 
       let res = await axios.get(`${API_URL}/posts/range/${startAt}/${limit}`);
       await new Promise((resolve, reject) => setTimeout(resolve, 2000));
@@ -184,7 +182,7 @@ export const loadPostsByPageRequest = (page) => {
       const payload = {
         posts: res.data.posts,
         amount: res.data.amount,
-        postsPerPage,
+        postsPerPage: limit,
         presentPage: page,
       };
 
