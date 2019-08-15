@@ -6,7 +6,6 @@ import { MdInfoOutline, MdDone, MdErrorOutline } from 'react-icons/md';
 import './Alert.scss';
 
 const Alert = ({ variant = '', children, ...otherProps }) => {
-
   const icon = () => {
     switch(variant) {
       case 'info':

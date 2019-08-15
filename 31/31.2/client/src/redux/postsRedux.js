@@ -124,7 +124,7 @@ export const addPostRequest = (post) => {
     dispatch(startRequest());
     try {
 
-      let res = await axios.post(`${API_URL}/posts`, post);
+      await axios.post(`${API_URL}/posts`, post);
       await new Promise((resolve, reject) => setTimeout(resolve, 2000));
       dispatch(endRequest());
 
@@ -141,7 +141,7 @@ export const updatePostRequest = (post) => {
     dispatch(startRequest());
     try {
 
-      let res = await axios.patch(`${API_URL}/posts`, post);
+      await axios.patch(`${API_URL}/posts`, post);
       await new Promise((resolve, reject) => setTimeout(resolve, 2000));
       dispatch(endRequest());
 
