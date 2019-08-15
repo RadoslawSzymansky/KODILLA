@@ -68,7 +68,6 @@ class Posts extends React.Component {
   }
 
   render() {
-    console.log("wywoluje posts")
     return (
       <div>
         {this.renderContent()}

@@ -17,7 +17,7 @@ class Pagination extends React.Component {
     const newPage = type === 'prev' ? page - 1 : page + 1;
     const content = type === 'prev' ? '<' : '>';
 
-    const button = <button onClick={() => this.changePage(newPage)}>{content}</button>;
+    const button = <div className='pagination__list__item' onClick={() => this.changePage(newPage)}>{content}</div>;
 
     if (type === 'prev' && page !== 1) return button;
     if (type === 'next' && page !== pages && pages > 1) return button;

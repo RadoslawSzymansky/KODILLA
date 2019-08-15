@@ -33,4 +33,26 @@
     }
 
   }
+  &.__item {
+      display: block;
+      width: $base-size * 2;
+      height: $base-size * 2;
+      margin: $base-size;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      border-radius: $radius;
+      transition: .2s;
+      color: $color-text-light;
+
+      &:hover {
+        color: $color-text;
+      }
+
+      &--active {
+        color: $color-primary;
+      }
+    }
+
 }
