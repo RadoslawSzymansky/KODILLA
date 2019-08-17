@@ -14,8 +14,7 @@ const PostSummary = ({ id, title, content, author, location }) => (
   <article className="post-summary">
     <SmallTitle>{title}</SmallTitle>
     <FacebookProvider appId="727203911061100">
-      {console.log(`${BASE_URL}${location.pathname}`)}
-      <ShareButton href={`${BASE_URL}${location.pathname}`} className="fb-share-button">
+      <ShareButton href={`${BASE_URL}${location.pathname}`}>
         Share
       </ShareButton>
     </FacebookProvider>
