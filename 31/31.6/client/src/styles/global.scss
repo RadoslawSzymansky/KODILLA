@@ -1,0 +1,69 @@
+@import './settings.scss';
+@import './normalize.scss';
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: $color-text-light;
+  background: $color-background;
+  font-family: $font-text;
+  font-size: ($base-size * 1.3);
+  line-height: 1.7;
+  letter-spacing: 0.5px;
+  overflow-y: scroll;
+}
+
+a, a:hover, a:visited {
+  text-decoration: none;
+}
+
+.fb-share-button {
+    background: #3b5998;
+    border-radius: 3px;
+    font-weight: 600;
+    padding: 5px 8px;
+    display: inline-block;
+    position: static;
+}
+
+body {
+    margin: 5%;
+    font-family: Helvetica;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-font-smoothing: antialiased;
+}
+
+.fb-share-button {
+    background: #3b5998;
+    border-radius: 3px;
+    font-weight: 600;
+    padding: 5px 8px;
+    display: inline-block;
+    position: static;
+}
+
+.fb-share-button:hover {
+    cursor: pointer;
+    background: #213A6F
+}
+
+.fb-share-button svg {
+    width: 18px;
+    fill: white;
+    vertical-align: middle;
+    border-radius: 2px
+}
+
+.fb-share-button span {
+    vertical-align: middle;
+    color: white;
+    font-size: 14px;
+    padding: 0 3px
+}
+
+@import './typography.scss';
+
