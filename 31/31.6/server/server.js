@@ -19,15 +19,16 @@ app.use((req, res, next) => {
   req.body = sanitize(req.body);
   next();
 });
-app.use('/api', postRoutes);
 
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '/../client/build')));
 
 app.get('*', (req, res) => {
+  console.log(path.join(__dirname + '/../client/build/index.html'))
   res.sendFile(path.join(__dirname + '/../client/build/index.html'));
 });
 
+app.use('/api', postRoutes);
 
 mongoose.connect(config.DB, { useNewUrlParser: true });
 let db = mongoose.connection;
