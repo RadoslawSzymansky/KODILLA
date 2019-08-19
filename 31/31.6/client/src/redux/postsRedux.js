@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { API_URL } from '../config';
 
 // action name creator
 const reducerName = 'posts';
@@ -14,6 +13,8 @@ export const END_REQUEST = createActionName('END_REQUEST');
 export const ERROR_REQUEST = createActionName('ERROR_REQUEST');
 export const RESET_REQUEST = createActionName('RESET_REQUEST');
 export const LOAD_POSTS_PAGE = createActionName('LOAD_POSTS_PAGE');
+export const LIKE_POST = createActionName('LIKE_POST');
+export const UNLIKE_POST = createActionName('UNLIKE POST');
 
 /* SELECTORS */
 
@@ -35,6 +36,8 @@ export const endRequest = () => ({ type: END_REQUEST });
 export const errorRequest = error => ({ error, type: ERROR_REQUEST });
 export const resetRequest = () => ({ type: RESET_REQUEST });
 export const loadPostsByPage = payload => ({ payload, type: LOAD_POSTS_PAGE });
+export const likePost = payload => ({ payload, type: LIKE_POST });
+export const unLikePost = payload => ({ payload, type: LIKE_POST });
 
 /* INITIAL STATE */
 
@@ -78,6 +81,19 @@ export default function reducer(statePart = initialState, action = {}) {
     case CLEAR_POST_TO_UPDATE:
       return { ...statePart, postToUpdate: null };
 
+    case LIKE_POST || UNLIKE_POST:
+      return {
+        ...statePart,
+        data: statePart.data.map(post => {
+          const postCopy = {...post};
+          if (post.id === action.payload.id) {
+            postCopy.likes = action.payload.likes
+          };
+          return postCopy
+        }),
+        singlePost: {...statePart.singlePost, likes: action.payload.likes}
+      };
+
     case START_REQUEST:
       return { ...statePart, request: { pending: true, error: null, success: null } };
     
@@ -103,8 +119,8 @@ export const loadPostsRequest = () => {
     dispatch(startRequest());
     try {
 
-      let res = await axios.get(`${API_URL}/posts`);
-      await new Promise((resolve, reject) => resolve, 2000);
+      let res = await axios.get(`/api/posts`);
+      await new Promise((resolve, reject) => resolve() );
       dispatch(loadPosts(res.data));
       dispatch(endRequest());
 
@@ -122,8 +138,8 @@ export const loadSinglePostRequest = (id, update) => {
     dispatch(startRequest());
     try {
       const action = update ? loadPostToUpdate : loadSinglePost;
-      let res = await axios.get(`${API_URL}/posts/${id}`);
-      await new Promise((resolve, reject) => resolve, 2000);
+      let res = await axios.get(`/api/posts/${id}`);
+      await new Promise((resolve, reject) => resolve() );
       dispatch(action(res.data));
       dispatch(endRequest());
     } catch (e) {
@@ -139,8 +155,8 @@ export const addPostRequest = (post) => {
     dispatch(startRequest());
     try {
 
-      await axios.post(`${API_URL}/posts`, post);
-      await new Promise((resolve, reject) => resolve, 2000);
+      await axios.post(`/api/posts`, post);
+      await new Promise((resolve, reject) => resolve() );
       dispatch(endRequest());
 
     } catch (e) {
@@ -156,8 +172,8 @@ export const updatePostRequest = (post) => {
     dispatch(startRequest());
     try {
 
-      await axios.patch(`${API_URL}/posts`, post);
-      await new Promise((resolve, reject) => resolve, 2000);
+      await axios.patch(`/api/posts`, post);
+      await new Promise((resolve, reject) => resolve() );
       dispatch(endRequest());
 
     } catch (e) {
@@ -176,8 +192,8 @@ export const loadPostsByPageRequest = (page, postsPerPage) => {
       const limit = postsPerPage || 10;
       const startAt = (page - 1) * limit;
 
-      let res = await axios.get(`${API_URL}/posts/range/${startAt}/${limit}`);
-      await new Promise((resolve, reject) => resolve, 2000);
+      let res = await axios.get(`/api/posts/range/${startAt}/${limit}`);
+      await new Promise((resolve, reject) => resolve() );
 
       const payload = {
         posts: res.data.posts,
@@ -202,13 +218,33 @@ export const loadRandomPostRequest = () => {
 
     dispatch(startRequest());
     try {
-      let res = await axios.get(`${API_URL}/posts/random`);
-      await new Promise((resolve, reject) => resolve, 2000);
+      let res = await axios.get(`/api/posts/random`);
+      await new Promise((resolve, reject) => resolve() );
       dispatch(loadSinglePost(res.data));
       dispatch(endRequest());
     } catch (e) {
       dispatch(errorRequest(e.message));
     }
 
+  };
+};
+
+export const likePostRequest = id => {
+  return async dispatch => {
+  
+    let res = await axios.put(`/api/posts/${id}/like`);
+    await new Promise((resolve, reject) => resolve());
+    dispatch(likePost({ id, likes: res.data }));
+
+  };
+};
+
+export const unLikePostRequest = id => {
+  return async dispatch => {
+
+    let res = await axios.put(`/api/posts/${id}/unlike`);
+    await new Promise((resolve, reject) => resolve());
+    dispatch(unLikePost({ id, likes: res.data }));
+  
   };
 };

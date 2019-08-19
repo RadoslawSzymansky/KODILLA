@@ -22,4 +22,10 @@ router.route('/posts').patch(PostController.updatePost);
 // get posts by range
 router.route('/posts/range/:startAt/:limit').get(PostController.getPostsByRange);
 
+// like post
+router.route('/posts/:id/like').put(PostController.likePost);
+
+// like post
+router.route('/posts/:id/unlike').put(PostController.unLikePost);
+
 module.exports = router;

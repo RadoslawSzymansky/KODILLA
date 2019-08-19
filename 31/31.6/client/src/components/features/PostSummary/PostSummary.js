@@ -7,10 +7,11 @@ import { BASE_URL } from '../../../config';
 import Button from '../../common/Button/Button';
 import SmallTitle from '../../common/SmallTitle/SmallTitle';
 import HtmlBox from '../../common/HtmlBox/HtmlBox';
+import PostRank from '../PostRank/PostRankContainer';
 
 import './PostSummary.scss';
 
-const PostSummary = ({ id, title, content, author, location }) => (
+const PostSummary = ({ id, title, content, author, location, likes }) => (
   <article className="post-summary">
     <SmallTitle>{title}</SmallTitle>
     <FacebookProvider appId="727203911061100">
@@ -18,6 +19,7 @@ const PostSummary = ({ id, title, content, author, location }) => (
         Share
       </ShareButton>
     </FacebookProvider>
+    <PostRank id={id} likes={likes} />
     <p>Author: {author}</p>
     <HtmlBox>{content}</HtmlBox>
     <Link to={`/posts/${id}`}>

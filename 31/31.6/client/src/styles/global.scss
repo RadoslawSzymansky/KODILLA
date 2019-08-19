@@ -65,5 +65,14 @@ body {
     padding: 0 3px
 }
 
+.post-rank {
+  display: inline-block;
+  margin-left: 25px;
+  span {
+    margin-right: 10px;
+    color: rgb(54, 53, 53);
+  }
+}
+
 @import './typography.scss';
 

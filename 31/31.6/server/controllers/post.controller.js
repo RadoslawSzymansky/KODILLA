@@ -100,3 +100,34 @@ exports.getRandomPost = async (req, res) => {
   };
 
 };
+
+// like post
+exports.likePost = async (req, res) => {
+
+  const { id } = req.params;
+
+  try {
+    const post = await Post.findOne({ id });
+    post.likes += 1;
+    await post.save();
+    res.status(200).json(post.likes);
+  } catch (err) {
+    res.status(500).json(err);
+  };
+
+};
+
+// unlike post
+exports.unLikePost = async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const post = await Post.findOne({ id });
+    post.likes -= 1;
+    await post.save();
+    res.status(200).json(post.likes);
+  } catch (err) {
+    res.status(500).json(err);
+  };
+
+};

@@ -5,7 +5,8 @@ const Post = new Schema({
   id: { type: 'String', required: true },
   title: { type: 'String', required: true },
   content: { type: 'String', required: true },
-  author: { type: 'String', required: true }
+  author: { type: 'String', required: true },
+  likes: { type: Schema.Types.Number, default: 0 }
 });
 
 module.exports = mongoose.model('Post', Post);

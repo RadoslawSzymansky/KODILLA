@@ -1,11 +1,10 @@
 const express = require('express');
-const path = require('path');
 const cors = require('cors');
 const config = require('./config');
+const path = require('path');
 const mongoose = require('mongoose');
 const sanitize = require('mongo-sanitize');
 const helmet = require('helmet');
-const loadTestData = require('./testData');
 
 const app = express();
 
@@ -20,29 +19,30 @@ app.use((req, res, next) => {
   next();
 });
 
+app.use('/api', postRoutes);
+
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '/../client/build')));
 
+
 app.get('*', (req, res) => {
-  console.log(path.join(__dirname + '/../client/build/index.html'))
   res.sendFile(path.join(__dirname + '/../client/build/index.html'));
 });
-
-app.use('/api', postRoutes);
 
 mongoose.connect(config.DB, { useNewUrlParser: true });
 let db = mongoose.connection;
 
 db.once('open', () => {
   console.log('Connected to the database');
-  loadTestData();
 });
 db.on('error', (err) => console.log('Error ' + err));
 mongoose.set('useNewUrlParser', true);
 mongoose.set('useFindAndModify', false);
 
-app.listen(config.PORT, function () {
-  console.log('Server is running on Port:', config.PORT);
+const port = process.env.PORT || config.PORT;
+
+app.listen(port , function () {
+  console.log('Server is running on Port:', port);
 });
 
 
