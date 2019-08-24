@@ -1,3 +1,3 @@
-// require('./calculateStylePoints.test.js')();
+require('./calculateStylePoints.test.js')();
 require('./calculateDistancePoints.test.js')();
-// require('./calculateTotalPoints.test')();
+require('./calculateTotalPoints.test')();

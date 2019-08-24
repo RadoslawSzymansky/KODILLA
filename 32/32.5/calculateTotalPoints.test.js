@@ -1,90 +1,62 @@
 const assert = require('assert');
-const formatDate = require('./calculateTotalPoints');
+const calculateTotalPoints = require('./calculateTotalPoints.js');
 
 module.exports = () => describe('formatDate', () => {
-  describe('seconds', () => {
-    it('should return seconds', () => {
-      const actual = formatDate(23);
 
-      const expected = '23s';
+  describe('bad values on extra points', () => {
+    it('should return result if  windFactor is String', () => {
+      const actual = calculateTotalPoints(91.5, 'normal', 98, [0, 1, 2, 3, 4], 0, '-10');
+
+      const expected = 43;
+
+      assert.equal(actual, expected);
+    });
+
+    it('should return result if  gateFactor is String', () => {
+      const actual = calculateTotalPoints(91.5, 'normal', 98, [0, 1, 2, 3, 4], '-10', 0);
+
+      const expected = 43;
 
       assert.equal(actual, expected);
     });
 
-    it('should return 0 seconds if no value is passed', () => {
-      const actual = formatDate();
-
-      const expected = '0s';
-
-      assert.equal(actual, expected);
-    });
   });
 
-  describe('minutes', () => {
-    it('should work for one digit minutes and seconds', () => {
-      const actual = formatDate(65);
+  describe('extra points minus', () => {
+    it('should return result if  - windFactor points', () => {
+      const actual = calculateTotalPoints(91.5, 'normal', 98, [0, 1, 2, 3, 4], 0, -10);
 
-      const expected = '1m 5s';
-
-      assert.equal(actual, expected);
-    });
-
-    it('should work for 2 digits minutes and seconds', () => {
-      const actual = formatDate(1414);
-
-      const expected = '23m 34s';
+      const expected = 43;
 
       assert.equal(actual, expected);
     });
 
-    it('should return only minutes', () => {
-      const actual = formatDate(780);
+    it('should return result if  - gateFactor points', () => {
+      const actual = calculateTotalPoints(91.5, 'normal', 98, [0, 1, 2, 3, 4], -10, 0);
 
-      const expected = '13m';
+      const expected = 43;
 
       assert.equal(actual, expected);
     });
+
   });
 
-  describe('hours', () => {
-    it('should work for one digit hours, minutes and seconds', () => {
-      const actual = formatDate(3723);
+  describe('extra points added', () => {
+    it('should return result if  + windFactor points', () => {
+      const actual = calculateTotalPoints(91.5, 'normal', 98, [0, 1, 2, 3, 4], 0, 10);
 
-      const expected = '1h 2m 3s';
-
-      assert.equal(actual, expected);
-    });
-
-    it('should work for 2 digit hours, minutes and seconds', () => {
-      const actual = formatDate(40333);
-
-      const expected = '11h 12m 13s';
+      const expected = 63;
 
       assert.equal(actual, expected);
     });
 
-    it('should work for hours only', () => {
-      const actual = formatDate('7200');
+    it('should return result if  + gateFactor points', () => {
+      const actual = calculateTotalPoints(91.5, 'normal', 98, [0, 1, 2, 3, 4], 10, 0);
 
-      const expected = '2h';
-
-      assert.equal(actual, expected);
-    });
-
-    it('should work for hours and minutes', () => {
-      const actual = formatDate(77820);
-
-      const expected = '21h 37m';
+      const expected = 63;
 
       assert.equal(actual, expected);
     });
 
-    it('should work for hours and seconds', () => {
-      const actual = formatDate('10815');
-
-      const expected = '3h 15s';
-
-      assert.equal(actual, expected);
-    });
   });
 });
