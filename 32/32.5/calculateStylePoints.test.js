@@ -19,6 +19,14 @@ module.exports = () => describe('calculateStylePoints', () => {
 
       assert.equal(actual, expected);
     });
+
+    it('should works if its array of strings' , () => {
+      const actual = calculateStylePoints([ '1', '2', '3', '4', '5']);
+
+      const expected = 9;
+
+      assert.equal(actual, expected);
+    });
   });
 
 
@@ -49,5 +57,16 @@ module.exports = () => describe('calculateStylePoints', () => {
 
       assert.equal(actual, expected);
     });
-  })
+  });
+
+  describe('the decimal values', () => {
+
+    it('should return 3*note, if each note is the same', () => {
+      const actual = calculateStylePoints([1.5, 1.5, 1.5, 1.5, 1.5]);
+
+      const expected = 4.5;
+
+      assert.equal(actual, expected);
+    });
+  });
 });
