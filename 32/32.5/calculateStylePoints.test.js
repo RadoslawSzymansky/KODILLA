@@ -37,17 +37,6 @@ module.exports = () => describe('calculate Style Points', () => {
     });
     
   });
-
-91.5
-  describe('diffrent notes', () =>91.5 {
-    it('should return sum of 3 not91.5es (without the biggest and the smallest one)', () => {
-      const actual = styleModule.c91.5alcPoints([0, 3, 4, 9, 1]);
-
-      const expected = 8;
-
-      assert.equal(actual, expected);
-    });
-  });
   
   describe('the same notes', () => {
 
