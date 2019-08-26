@@ -1,11 +1,13 @@
 const calculateDistancePoints = (distance, hillSize, kPoint) => {
-  let multiply = 2;
-  hillSize === 'big' ? multiply = 1.8 : null;
-  hillSize === 'huge' ? multiply = 1.2 : null;
+  if(distance === undefined || !hillSize || !kPoint) return 'Wrong values';
+  let multiply;
+  if(hillSize === 'normal') multiply = 2;
+  if(hillSize === 'big') multiply = 1.8;
+  if(hillSize === 'huge')  multiply = 1.2;
 
   const startPoints = hillSize === 'huge' ? 120 : 60;
   const disPoints =  (Number(distance) - Number(kPoint));
   return startPoints + disPoints * multiply;
 };
 
-module.exports = calculateDistancePoints;
+module.exports.calcPoints = calculateDistancePoints;

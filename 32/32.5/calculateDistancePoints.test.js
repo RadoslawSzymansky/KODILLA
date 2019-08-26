@@ -1,12 +1,12 @@
 const assert = require('assert');
-const calculateDistancePoints = require('./calculateDistancePoints');
+const distanceModule = require('./calculateDistancePoints');
 
-module.exports = () => describe('calculateDistancePoints', () => {
+module.exports = () => describe('calcPoints', () => {
   describe('normal Hill', () => {
 
     describe('distance smaller than point K', () => {
       it('should return calculated points', () => {
-        const actual = calculateDistancePoints(91.5, 'normal', 98);
+        const actual = distanceModule.calcPoints(91.5, 'normal', 98);
 
         const expected = 47;
 
@@ -16,7 +16,7 @@ module.exports = () => describe('calculateDistancePoints', () => {
 
     describe('distane bigger than point K', () => {
       it('should return calculated points', () => {
-        const actual = calculateDistancePoints(99.5, 'normal', 98);
+        const actual = distanceModule.calcPoints(99.5, 'normal', 98);
 
         const expected = 63;
 
@@ -29,7 +29,7 @@ module.exports = () => describe('calculateDistancePoints', () => {
 
     describe('distance smaller than point K', () => {
       it('should return calculated points', () => {
-        const actual = calculateDistancePoints(91.5, 'big', 98);
+        const actual = distanceModule.calcPoints(91.5, 'big', 98);
 
         const expected = 48.3;
 
@@ -39,7 +39,7 @@ module.exports = () => describe('calculateDistancePoints', () => {
 
     describe('distane bigger than point K', () => {
       it('should return calculated points', () => {
-        const actual = calculateDistancePoints(99.5, 'big', 98);
+        const actual = distanceModule.calcPoints(99.5, 'big', 98);
 
         const expected = 62.7;
 
@@ -54,7 +54,7 @@ module.exports = () => describe('calculateDistancePoints', () => {
 
     describe('distance smaller than point K', () => {
       it('should return calculated points', () => {
-        const actual = calculateDistancePoints(91.5, 'huge', 98);
+        const actual = distanceModule.calcPoints(91.5, 'huge', 98);
 
         const expected = 112.2;
 
@@ -64,7 +64,7 @@ module.exports = () => describe('calculateDistancePoints', () => {
 
     describe('distane bigger than point K', () => {
       it('should return calculated points', () => {
-        const actual = calculateDistancePoints(99.5, 'huge', 98);
+        const actual = distanceModule.calcPoints(99.5, 'huge', 98);
 
         const expected = 121.8;
 
@@ -75,16 +75,16 @@ module.exports = () => describe('calculateDistancePoints', () => {
   });
 
   describe('diffrent arguments', () => {
-    it('should works for normal hillsize if is called  !== big, normal or huge', () => {
-      const actual = calculateDistancePoints(91.5, 'bad', 98);
+    it('should return info that function requires 3 params if they are not included', () => {
+      const actual = distanceModule.calcPoints(91.5, 10);
 
-      const expected = 47;
+      const expected = 'Wrong values';
 
       assert.equal(actual, expected);
     });
 
     it('should works if distance argument is string', () => {
-      const actual = calculateDistancePoints('91.5', 'normal', 98);
+      const actual = distanceModule.calcPoints('91.5', 'normal', 98);
 
       const expected = 47;
 
@@ -92,7 +92,7 @@ module.exports = () => describe('calculateDistancePoints', () => {
     });
 
     it('should works if pointK argument is string', () => {
-      const actual = calculateDistancePoints(91.5, 'normal', '98');
+      const actual = distanceModule.calcPoints(91.5, 'normal', '98');
 
       const expected = 47;
 

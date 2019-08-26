@@ -1,5 +1,9 @@
 const assert = require('assert');
+const sinon = require('sinon');
+
 const calculateTotalPoints = require('./calculateTotalPoints.js');
+const styleModule = require('./calculateStylePoints.js');
+const distanceModule = require('./calculateDistancePoints.js');
 
 module.exports = () => describe('formatDate', () => {
 
@@ -56,6 +60,23 @@ module.exports = () => describe('formatDate', () => {
       const expected = 63;
 
       assert.equal(actual, expected);
+    });
+
+  });
+
+  describe('call functions', () => {
+    it('should call calculateDistancePoints', () => {
+      const spy = sinon.spy(distanceModule, "calcPoints");
+      calculateTotalPoints(91.5, 'normal', 98, [0, 1, 2, 3, 4], 10, 0);
+
+      assert.equal(spy.calledOnceWith(91.5), true);
+    });
+
+    it('should call calculateStylePoints', () => {
+      const spy = sinon.spy(styleModule, "calcPoints");
+      calculateTotalPoints(91.5, 'normal', 98, [0, 1, 2, 3, 4], 10, 0);
+
+      assert.equal(spy.calledOnceWith([0, 1, 2, 3, 4]), true);
     });
 
   });

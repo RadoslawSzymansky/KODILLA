@@ -1,10 +1,11 @@
-const calculateDistancePoints = require('./calculateDistancePoints');
-const calculateStylePoints = require('./calculateStylePoints');
+const distanceModul = require('./calculateDistancePoints');
+const styleModule = require('./calculateStylePoints');
 
 const calculateTotalPoints = (distance, hillSize, kPoint, styleNotes, windFactor, gateFactor) => {
-  const distancePoints = calculateDistancePoints(distance, hillSize, kPoint);
-  const stylePoints = calculateStylePoints(styleNotes);
-  
+
+  const distancePoints = distanceModul.calcPoints(distance, hillSize, kPoint);
+  const stylePoints = styleModule.calcPoints(styleNotes);
+
   return distancePoints + stylePoints  + Number(windFactor) + Number(gateFactor);
 };
 
