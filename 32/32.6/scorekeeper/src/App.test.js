@@ -1,8 +1,9 @@
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import App from './App';
 import PlayersList from './components/PlayersList/PlayersList';
 import AddPlayer from './components/AddPlayer/AddPlayer';
+import Player from './components/Player/Player';
 
 const players = [
   {
@@ -42,4 +43,18 @@ it('should add player', () => {
   expect(players.length).toEqual(1);
   expect(players[0].name).toEqual('Ania');
   expect(players[0].score).toEqual(0);
+});
+
+it('should remove  first player', () => {
+  const appComponent = mount(<App />);
+
+  const onPlayerRemove = appComponent.find(PlayersList).prop('onPlayerRemove');
+
+  appComponent.setState({ players });
+
+  onPlayerRemove(0);
+  const playersArr = appComponent.state('players');
+
+  expect(playersArr.length).toEqual(1);
+  expect(playersArr[0].name).toEqual('Antoś');
 });

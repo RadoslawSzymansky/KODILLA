@@ -38,3 +38,15 @@ it('calls a onScoreUpdate', () => {
 
   expect(mockedOnScoreUpdate).toBeCalledWith(0, 10);
 });
+
+it('calls a onPlayerRemove with good index', () => {
+  const mockedOnPlayerRemove = jest.fn();
+  const playerComponent = shallow(<PlayersList players={players} onPlayerRemove={mockedOnPlayerRemove} />);
+
+  const firstPlayer = playerComponent.find(Player).first();
+  const onPlayerRemove = firstPlayer.prop('onPlayerRemove');
+
+  onPlayerRemove();
+
+  expect(mockedOnPlayerRemove).toBeCalledWith(0);
+});
