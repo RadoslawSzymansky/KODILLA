@@ -51,9 +51,9 @@ it('should call onPlayerRemove when plus button is clicked', () => {
   const mockedOnPlayerRemove = jest.fn();
   const playerComponent = shallow(<Player onPlayerRemove={mockedOnPlayerRemove} />);
 
-  const plusButton = playerComponent.find('.Player__button').at(2);
+  const removeButton = playerComponent.find('.Player__button').at(2);
 
-  plusButton.simulate('click');
+  removeButton.simulate('click');
 
   expect(mockedOnPlayerRemove).toHaveBeenCalled();
 });

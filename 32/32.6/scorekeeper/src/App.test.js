@@ -3,7 +3,6 @@ import { shallow, mount } from 'enzyme';
 import App from './App';
 import PlayersList from './components/PlayersList/PlayersList';
 import AddPlayer from './components/AddPlayer/AddPlayer';
-import Player from './components/Player/Player';
 
 const players = [
   {
